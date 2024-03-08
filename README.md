@@ -32,16 +32,29 @@ Forking a GitHub repository is a common operation done to create your copy of so
 
 ### **Step 2: Create a virtual environment**
 
-Using virtual environments promotes best practices in Python development, including dependency management, reproducibility, and cleanliness.  It allows you to isolate dependencies for different projects and hopefully avoid you from entering dependency hell! 
+Using virtual environments promotes best practices in Python development, including dependency management, reproducibility, and cleanliness.  It allows you to isolate dependencies for different projects and hopefully avoid you from entering [dependency hell](https://en.wikipedia.org/wiki/Dependency_hell)! 
 
-1. Create a virtual environment by running the following `python3 -m venv <virtual_env_name>` replacing <virtual_env_name> with your own memorable name
-2. Activate the environment `source <virtual_env_name>/bin/activate`
+1. Create a virtual environment by running the following:
+```
+python3 -m venv <virtual_env_name>
+```
+replacing `<virtual_env_name>` with your own memorable name
+2. Activate the environment:
+```
+source <virtual_env_name>/bin/activate
+```
 
 ### Step 3: Modify the `worldbank.py` file and install dependencies
 
 1. You need to ***uncomment*** the `app.run(host='0.0.0.0', port=3000, debug=True)` line in the `worldbank.py` file.
-2. Install the required packages: `pip install -r requirements.txt`
-3. Then run the app from the command line: `python worldbank.py`
+2. Install the required packages:
+```
+pip install -r requirements.txt
+```
+3. Then run the app from the command line:
+```
+python worldbank.py
+```
 
 The dashborard app should now render locally at port 3000.
 
@@ -61,16 +74,19 @@ Heroku is just one option of many for deploying a web app. The big internet comp
 ### **Step 2: Install dependencies**
 
 The new virtual environment will automatically come with Python packages meant for data science. In addition, pip install the specific Python packages needed for the web app:
-
-`pip install flask pandas plotly gunicorn`
+```
+pip install flask pandas plotly gunicorn
+```
 
 Check if you already have Heroku installed:
-
-`heroku --version`
+```
+heroku --version
+```
 
 If not, install it from the command line:
-
-`curl https://cli-assets.heroku.com/install-ubuntu.sh | sh`
+```
+curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+```
 
 Other dependencies are included in the `requirements.txt` file however these will be installed by Heroku as part of the applicatin build.
 
@@ -78,8 +94,9 @@ Other dependencies are included in the `requirements.txt` file however these wil
 ### **Step 3: Login to Heroku**
 
 You can log in from the command line using:
-
-`heroku login`
+```
+heroku login
+```
 
 A browser should open asking you to log in - and once confirmed you can return to the cli.
 
@@ -87,46 +104,64 @@ A browser should open asking you to log in - and once confirmed you can return t
 ### **Step 4: Initilaize a git repository**
 
 Run this command just once at the beginning:
-`git init`
+```
+git init
+```
 
 Configure git username and email:
-`git config --global user.email "you@example.com"`
-`git config --global user.name "Your Name"`
+```
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
 
 Every time you make any edits to any file:
-`git add .`
+```
+git add .
+```
 
 Check which files are ready to be committed:
-`git status`
+```
+git status
+```
 
 Make a commit:
-`git commit -m "your message"`
+```
+git commit -m "your message"
+```
 
 
 ### **Step 5: Create a Heroku app**
-
-`heroku create <your-app-name> --buildpack heroku/python` replacing <your-app-name> with your own choice.
+```
+heroku create <your-app-name> --buildpack heroku/python
+```
+replacing `<your-app-name>` with your own choice.
 
 This should create a git repository on Heroku and a web address for accessing your web app. You can check that a remote repository was added to your git repository with the following terminal command:
-
-`git remote -v`
+```
+git remote -v
+```
 
 
 ### **Step 6: Final push!**
 
 Now, push your local repo to the remote Heroku repo:
+```
+git push heroku master
+```
 
-`git push heroku master`
-
-Your app should now be available for viewing and SHARING at your web app's address, such as https://agri-dashboard-137-345748516635.herokuapp.com/, in the browser to see the results.
+Your app should now be available for viewing and sharing at your web app's address, such as https://agri-dashboard-137-345748516635.herokuapp.com/, in the browser to see the results.
 
 Other useful commands:
 - Clear the build cache
-`heroku plugins:install heroku-builds`
-`heroku builds:cache:purge -a <app-name> --confirm <app-name>`
+```
+heroku plugins:install heroku-builds
+heroku builds:cache:purge -a <app-name> --confirm <app-name>
+```
 
 - Permanently delete the app
-`heroku apps:destroy  <app-name> --confirm <app-name>`
+```
+heroku apps:destroy  <app-name> --confirm <app-name>
+```
 
 ### Acknowledgements
 
