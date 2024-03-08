@@ -9,7 +9,7 @@ This project:
 - deploys the app via [Heroku](https://agri-dashboard-137-345748516635.herokuapp.com/)
 
 
-## Getting Started 
+## Running the project locally
 
 ### **Step 1: Fork this repo**
 
@@ -37,8 +37,17 @@ Using virtual environments promotes best practices in Python development, includ
 1. Create a virtual environment by running the following `python3 -m venv <virtual_env_name>` replacing <virtual_env_name> with your own memorable name
 2. Activate the environment `source <virtual_env_name>/bin/activate`
 
+### Step 3: Modify the `worldbank.py` file and install dependencies
 
-### **Step 3: Create a free Heroku account (for deployment of app)**
+1. You need to ***uncomment*** the `app.run(host='0.0.0.0', port=3000, debug=True)` line in the `worldbank.py` file.
+2. Install the required packages: `pip install -r requirements.txt`
+3. Then run the app from the command line: `python worldbank.py`
+
+The dashborard app should now render locally at port 3000.
+
+## Deploying the project on Heroku
+
+### **Step 1: Create a free Heroku account (for deployment of app)**
 
 Heroku is a cloud platform as a service (PaaS) that allows developers to build, deploy, and manage applications easily. It supports various programming languages such as Ruby, Node.js, Python, Java, PHP, and Go, among others. Heroku abstracts much of the infrastructure management away from developers, allowing them to focus on writing code and deploying applications without having to worry about the underlying hardware or server management.
 
@@ -49,13 +58,13 @@ Sign up for a free acount [here](https://id.heroku.com/login)
 Heroku is just one option of many for deploying a web app. The big internet companies offer similar services like [Amazon's Lightsail](https://aws.amazon.com/lightsail/), [Microsoft's Azure](https://learn.microsoft.com/en-us/samples/azure-samples/python-docs-hello-world/python-flask-sample-for-azure-app-service-linux/) and [Google Cloud](https://cloud.google.com/appengine/docs/standard/setting-up-environment?tab=python). However, these services tend to require more configuration. Most of these also come with either a free tier or a limited free tier that expires after a certain amount of time.
 
 
-### **Step 4: Install dependencies**
+### **Step 2: Install dependencies**
 
 The new virtual environment will automatically come with Python packages meant for data science. In addition, pip install the specific Python packages needed for the web app:
 
 `pip install flask pandas plotly gunicorn`
 
-If you would like to deploy using Heroku then first check if you have it:
+Check if you already have Heroku installed:
 
 `heroku --version`
 
@@ -66,7 +75,7 @@ If not, install it from the command line:
 Other dependencies are included in the `requirements.txt` file however these will be installed by Heroku as part of the applicatin build.
 
 
-### **Step 5: Login to Heroku**
+### **Step 3: Login to Heroku**
 
 You can log in from the command line using:
 
@@ -75,7 +84,7 @@ You can log in from the command line using:
 A browser should open asking you to log in - and once confirmed you can return to the cli.
 
 
-### **Step 6: Initilaize a git repository**
+### **Step 4: Initilaize a git repository**
 
 Run this command just once at the beginning:
 `git init`
@@ -94,7 +103,7 @@ Make a commit:
 `git commit -m "your message"`
 
 
-### **Step 7: Create a Heroku app**
+### **Step 5: Create a Heroku app**
 
 `heroku create <your-app-name> --buildpack heroku/python` replacing <your-app-name> with your own choice.
 
@@ -103,12 +112,11 @@ This should create a git repository on Heroku and a web address for accessing yo
 `git remote -v`
 
 
-### **Step 8: Final push!**
+### **Step 6: Final push!**
 
 Now, push your local repo to the remote Heroku repo:
 
 `git push heroku master`
-
 
 Your app should now be available for viewing and SHARING at your web app's address, such as https://agri-dashboard-137-345748516635.herokuapp.com/, in the browser to see the results.
 
@@ -120,31 +128,9 @@ Other useful commands:
 - Permanently delete the app
 `heroku apps:destroy  <app-name> --confirm <app-name>`
 
+### Acknowledgements
 
-### **Running the project locally without deployment**
-
-If you want to check that this project runs locally on your own machine, prior to deployment, you need to uncomment the following line in the `worldbank.py` file:
-
-`app.run(host='0.0.0.0', port=3000, debug=True)`
-
-This will allow the dashboard to render locally at port 3000.
-
-### **Project files**
-
-#### Front-end
-- index.html
-
-
-#### Back-end
-- data.py
-- __init__.py
-- routes.py
-- Procfile
-- worldbank.py
-
-#### Other files
-- requirements.txt
-- runtime.txt
+Special thanks to [Andrew Paster](https://www.linkedin.com/in/andrewpaster/) for his guidance on how to pull data from APIs, leverage the Bootstrap library and Flask framework to create and deploy an iteractive dashboard,  and his general expert insights on best Software Engineering practices.
 
 
 
